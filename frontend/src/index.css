@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --bg: 11 15 23;
+  --bg-panel: 18 24 38;
+  --bg-raised: 24 33 49;
+  --border: 35 44 61;
+  --text: 231 234 240;
+  --text-muted: 154 164 178;
+  --text-faint: 92 102 117;
+  --accent: 76 126 243;
+  --accent-hover: 62 107 219;
+  --accent-soft: 27 42 74;
+}
+
+html.light {
+  color-scheme: light;
+  --bg: 246 247 251;
+  --bg-panel: 255 255 255;
+  --bg-raised: 255 255 255;
+  --border: 227 231 239;
+  --text: 22 27 38;
+  --text-muted: 91 100 114;
+  --text-faint: 136 145 160;
+  --accent: 55 99 219;
+  --accent-hover: 44 80 179;
+  --accent-soft: 232 237 252;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--border)) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgb(var(--border));
+  border-radius: 8px;
+}
+
+body {
+  @apply bg-surface text-ink font-body antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 2px;
+}
+
+/* Markdown / code block styling inside chat messages */
+.msg-markdown pre {
+  @apply border rounded-xl p-4 overflow-x-auto text-sm my-3;
+  background: color-mix(in srgb, rgb(var(--bg)) 60%, black 10%);
+  border-color: rgb(var(--border));
+}
+.msg-markdown code {
+  @apply font-mono text-[0.85em];
+}
+.msg-markdown p code,
+.msg-markdown li code {
+  background: rgb(var(--bg-raised));
+  @apply rounded px-1.5 py-0.5 border border-surface-border;
+}
+.msg-markdown p {
+  @apply mb-3 leading-relaxed;
+}
+.msg-markdown ul,
+.msg-markdown ol {
+  @apply mb-3 pl-5 space-y-1;
+}
+.msg-markdown ul {
+  @apply list-disc;
+}
+.msg-markdown ol {
+  @apply list-decimal;
+}
+.msg-markdown h1,
+.msg-markdown h2,
+.msg-markdown h3 {
+  @apply font-display font-semibold mt-4 mb-2;
+}
+.msg-markdown a {
+  @apply text-accent underline underline-offset-2;
+}
+.msg-markdown blockquote {
+  @apply border-l-2 border-accent/50 pl-3 italic text-ink-muted my-3;
+}
